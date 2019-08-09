@@ -1,0 +1,36 @@
+{
+  "name": "bobo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "LOG=true NODE_ENV=dev node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gnuhc/bobo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gnuhc/bobo/issues"
+  },
+  "homepage": "https://github.com/gnuhc/bobo#readme",
+  "dependencies": {
+    "ask-sdk": "^2.3.0",
+    "ask-sdk-core": "^2.3.0",
+    "ask-sdk-dynamodb-persistence-adapter": "^2.5.2",
+    "aws-sdk": "^2.450.0",
+    "aws-serverless-express": "^3.2.0",
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.3",
+    "i18next": "^11.6.0",
+    "i18next-sprintf-postprocessor": "^0.2.2",
+    "node-fetch": "^2.4.1",
+    "path": "^0.12.7",
+    "request": "^2.87.0",
+    "virtual-alexa": "^0.7.2"
+  }
+}
