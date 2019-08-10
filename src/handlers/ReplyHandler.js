@@ -1,4 +1,5 @@
-const ReplyResponder = require('../responders/ReplyResponder')
+//const ReplyResponder = require('../responders/ReplyResponder')
+const Handler = require('../model/Handler')
 
 const ReplyHandler = {
     canHandle(handlerInput) {
@@ -10,7 +11,8 @@ const ReplyHandler = {
 
     },
     handle(handlerInput) {
-        return ReplyResponder(handlerInput)
+        // TODO: Create future reply handling
+        //return ReplyResponder(new Handler(handlerInput))
     }
 }
 

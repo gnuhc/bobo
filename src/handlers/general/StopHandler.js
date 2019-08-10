@@ -1,5 +1,6 @@
 
 const prompts = require('../../utils/prompts')
+const Handler = require('../../model/Handler')
 
 const StopHandler = {
     canHandle(handlerInput) {
@@ -9,11 +10,8 @@ const StopHandler = {
                request.intent.name === 'AMAZON.StopIntent'
     },
     handle(handlerInput) {
-
-        return responseBuilder
-            .speak(prompts.STOP)
-            .withShouldEndSession(true)
-            .getResponse()
+        const handler = new Handler(handlerInput)
+        return handler.respond(prompts.STOP)
     }
 }
 

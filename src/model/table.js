@@ -37,15 +37,9 @@ class Table {
 
     async put(item) {
         return new Promise((resolve, reject) => {
-            this.db.put({
-                TableName: this.name,
-                Item: item,
-
-                // Ensure this is not ovewriting an existing item
-                ConditionExpression: 'attribute_not_exists(#id)',
-                ExpressionAttributeNames: {
-                    '#id': 'id'
-                }
+            this.client.put({
+                TableName: 'user',
+                Item: item
             },
             (error, data) => {
                 console.log(error,data)

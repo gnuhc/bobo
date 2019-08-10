@@ -1,4 +1,5 @@
 const QuestionResponder = require('../responders/QuestionResponder')
+const Handler = require('../model/Handler')
 
 const QuestionHandler = {
     canHandle(handlerInput) {
@@ -9,7 +10,7 @@ const QuestionHandler = {
                request.intent.name === 'QUESTION_INTENT')
     },
     handle(handlerInput) {
-        return QuestionResponder(handlerInput)
+        return QuestionResponder(new Handler(handlerInput))
     }
 }
 

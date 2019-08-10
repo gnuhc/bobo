@@ -1,5 +1,6 @@
 
 const prompts = require('../../utils/prompts')
+const Handler = require('../../model/Handler')
 
 const FallbackHandler = {
     canHandle(handlerInput) {
@@ -9,11 +10,8 @@ const FallbackHandler = {
                request.intent.name === 'AMAZON.FallbackIntent')
     },
     handle(handlerInput) {
-        
-        return responseBuilder
-            .speak(prompts.FALLBACK)
-            .reprompt(prompts.FALLBACK)
-            .getResponse()
+        const handler = new Handler(handlerInput)
+        return handler.respond(prompts.FALLBACK)
     }
 }
 

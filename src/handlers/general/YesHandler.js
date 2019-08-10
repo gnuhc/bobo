@@ -1,3 +1,5 @@
+const Handler = require('../../model/Handler')
+const ReplyYesResponder = require('../../responders/ReplyYesResponder')
 
 const YesHandler = {
     canHandle(handlerInput) {
@@ -11,18 +13,14 @@ const YesHandler = {
             //    !!request.arguments && request.arguments[0] === 'yes')
     },
     handle(handlerInput) {
-        var prompt = `Ok, you said yes. `
+        var prompt, handler = new Handler(handlerInput) 
 
-        const responseBuilder = handlerInput.responseBuilder,
-        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes()
+        if (handler.sessionAttributes.STATE === 'STATE_AFTER_REPLY')
+            return ReplyYesResponder(handler)
+        else 
+            prompt = `Ok, you said yes. `
 
-        if (sessionAttributes.STATE === 'STATE_AFTER_REPLY')
-            prompt = `What else would you like help with? `
-
-        return responseBuilder
-            .speak(prompt)
-            .reprompt(prompt)
-            .getResponse()
+        return handler.respond(prompt)
     }
 }
 

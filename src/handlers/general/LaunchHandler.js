@@ -1,4 +1,4 @@
-
+const Handler = require('../../model/Handler')
 const prompts = require('../../utils/prompts')
 
 const LaunchHandler = {
@@ -8,12 +8,8 @@ const LaunchHandler = {
         return request.type === 'LaunchRequest'
     },
     handle(handlerInput) {
-        
-        return handlerInput.responseBuilder
-        .speak(prompts.WELCOME)
-        .reprompt(prompts.WELCOME)
-        .getResponse()
-
+        const handler = new Handler(handlerInput)
+        return handler.respond(prompts.WELCOME)
     },
 }
 

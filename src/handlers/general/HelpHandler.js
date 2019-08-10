@@ -1,4 +1,4 @@
-
+const Handler = require('../../model/Handler')
 const prompts = require('../../utils/prompts')
 
 const HelpHandler = {
@@ -9,14 +9,8 @@ const HelpHandler = {
                request.intent.name === 'AMAZON.HelpIntent'
     },
     handle(handlerInput) {
-        
-        const attributesManager = handlerInput.attributesManager
-        const responseBuilder = handlerInput.responseBuilder
-
-        return responseBuilder
-            .speak(prompts.HELP)
-            .reprompt(prompts.HELP)
-            .getResponse()
+        const handler = new Handler(handlerInput)
+        return handler.respond(prompts.HELP)
     }
 }
 

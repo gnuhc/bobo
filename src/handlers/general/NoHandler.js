@@ -1,3 +1,5 @@
+const Handler = require('../../model/Handler')
+const ReplyNoResponder = require('../../responders/ReplyNoResponder')
 
 const NoHandler = {
     canHandle(handlerInput) {
@@ -10,18 +12,14 @@ const NoHandler = {
             //    !!request.arguments && request.arguments[0] === 'no')
     },
     handle(handlerInput) {
-        var prompt = `Ok, you said no. `
+        var prompt, handler = new Handler(handlerInput)
 
-        const responseBuilder = handlerInput.responseBuilder
-        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes()
+        if (handler.sessionAttributes.STATE === 'STATE_AFTER_REPLY')
+            return ReplyNoResponder(handler)
+        else 
+            prompt = `Ok, you said no. `
 
-        if (sessionAttributes.STATE === 'STATE_AFTER_REPLY')
-            prompt = `Ok, have a nice day. `
-        
-        return responseBuilder
-            .speak(prompt)
-            .reprompt(prompt)
-            .getResponse()
+        return handler.respond(prompt)
     }
 }
 
