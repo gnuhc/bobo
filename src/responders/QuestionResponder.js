@@ -5,6 +5,7 @@ const prompts = require('../utils/prompts')
 const constants = require('../utils/constants').constants
 const table = require('../utils/db').table
 const Weather = require('../model/Weather')
+const User = require('../model/User')
 
 async function QuestionResponder(handler) {
     // Get session attributes
@@ -23,9 +24,11 @@ async function QuestionResponder(handler) {
     if (! address.postalCode)
         return handler.end(prompts.REGISTER_DEVICE)
 
+    // Create User instance
+    var user = new User()
     // Create Weather instance
     var weatherObject = new Weather()
-
+    
     var [ email, weather ] = await Promise.all([
         // Get user email
         getEmail(),
@@ -41,11 +44,11 @@ async function QuestionResponder(handler) {
     if (! weather)
         prompt += prompts.WEATHER_NOT_FOUND
 
-    // Get user data from database
-    var user = await table.get(email)
+    // Load user data from database
+    await user.load(email)
 
     // Failed to retrieve user from database
-    if (! user)
+    if (! user.info)
         return handler.end(prompts.USER_NOT_FOUND)
 
     /* Do things with user data and weather data... */
