@@ -1,6 +1,6 @@
 # Bobo
 
-Personal Assistant that brightnes your day with morning advice.
+Personal Assistant that brightens your day with morning advice.
 
 - Weather
 - Fashion
